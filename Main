@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="widthvdevice-width, initial-scale=1.0">
+	
+	<style>
+		body {
+		
+			margin: 0;
+			overflow: hidden;
+		
+		}
+		
+		#testimage {
+			position: absolute;
+			width: 250px;
+			height: auto;
+		}
+		
+	
+	
+	</style>
+</head>
+
+
+<body>
+
+
+	<img id="testimage" src="testimage.png" alt="testimage">
+
+	<script>
+	
+		var image = document.getElementById('testimage');
+		
+		var posX = 0;
+		var posY = 0;
+		
+		function updatePos() {
+		
+		var DeltaX = mouseX - (posX + image.width / 2);
+		var DeltaY = mouseY - (posY + image.height / 2);
+		
+		posX += DeltaX * .5;
+		posY += DeltaY * .5;
+		
+		image.style.left = posX + 'px';
+		image.style.top = posY + 'px';
+		
+		requestAnimationFrame(updatePos);
+		
+	
+		
+		}
+	
+		
+		var mouseX = 0
+		var mouseY = 0
+		
+		function UpdateMousePos(event) {
+		
+		mouseX = event.clientX || event.touches[0].clientX;
+		mouseY = event.clientY || event.touches[0].clientY;
+		}
+		
+		document.addEventListener('mousemove', UpdateMousePos);
+		document.addEventListener('touchmove', UpdateMousePos);
+		
+		requestAnimationFrame(updatePos);
+		
+	</script>
+</body>
+
+</html>
